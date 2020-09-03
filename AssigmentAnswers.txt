@@ -1,0 +1,369 @@
+1.	What is the difference between loose coupling and tide coupling? Explain with one example
+
+Loose coupling:
+It’s a technique where one class is not dependent on another class or less dependent. That means if we modify one class then it should not affect to other classes.
+It’s a better way to make code or classes loosly couple.
+
+Tight coupling
+In tight coupling one class is dependent on another class. That means if we try to modify one class other classes also get affected.
+
+Example: Tightly coupled
+public class A {
+	      B b;
+
+	    public A() {
+		b = new B();
+	     }
+       }
+
+In the above example class B is dependent on class A. When we will create object of class A then only class B object will created.
+
+Example: Loosly coupled
+       public class A {
+          
+            @AutoWired
+	      B b;
+
+	    public A() {}
+       }
+ In above example class B is not dependent on class A. class B is created by Spring container and whenever required in class A Dependency injection inject it.    
+
+
+2.	what is an interface? Why we use interface in software? 
+
+Interface is medium to connect applications to the users.
+We use interface to make code loosly coupled. We are avoiding to provide internal  implementation to the users. We are just providing the major functionality, what users needed.
+
+3.	What is the difference between @Controller and @Rest Controller? 
+@Controller
+This annotation is used mark the Request Handler class for the Rest Services.
+While using @Controller we have to explicitly use @ResponseBody to each method to convert the return type to HTTPResponse.
+@RestController
+This annotation is used mark the Request Handler class for the Rest Services.
+While using @RestController, its not required to write @ResponseBody explicitly to get the HTTPResponse.
+@RestController = @Controller + @ResponseBody
+
+4.	What is @Get, @Post, @Put, @Patch, @Delete  Method?
+@Get
+It is a Http method which is responsible for getting the data from the server by using given URL. 
+We can perform any number of Get operation to get the data from the server, it will not affect the data present on the server.
+@Post
+It is a Http method which is responsible for post(write) the data to the server with the help of given URL.
+It will add the data to the server after every call.
+@Put
+It is a Http method which is used to update the data(whole object) which is present on the server with the help of given URL.
+@Patch
+It is a Http method which is responsible for update the data(specific field) which is present on the server with the help of given URL.
+It is used to reduce the load on server while updating.
+@Delete
+It is Http method which is used to delete the data from the server.
+
+5.	What is the difference between @Param and @PathVarible?
+@RequestParam
+This annotation is used to get the specific field data from the UI or from the JSON file.
+@PathVariable
+This annotation is used to get the data from the given URL.
+
+6.	What is @RequestMapping? Why do we use it?
+This is used to map the HTTP request to handler methods or resource in Rest controller.
+This can be apply on class, method or both.
+
+7.	What is the difference between Time Complexity and Space Complexity, Why we Calculate?
+Time Complexity
+It is used to measure the time taken while execution of the code.
+Space Complexity
+Its used to calculate the extra space used in memory while execution of the code.
+
+We calculate it because we have to minimize the Time Complexity and Space Complexity of the code for the faster execution and better performance.
+
+
+8.	Why we use partition table in the database?
+We use it to enhance the performance while working with the database.
+Suppose we large number of records present in a table and we need to find a record from the table, So in this case it will iterate whole the records to find a record. And to avoid this we will partition the table and we will hit the exact partition of the table so it will only iterate the partitioned table.
+
+9.	What is the difference between JPA and Hibernate? and why JPA is coming in the Picture?
+JPA is an interface which is used between java object and relational database.
+Its need some implementation to perform operations with database.
+It has predefined Crud operations. That means after using JPA we can directly 
+
+Hibernate is one of the implementation of JPA to perform the database operations
+Its a java Framework which is used to store java object to relational database.
+Its an object relational mapping tool. 
+
+We need JPA for loose coupling like if now we are using Hibernate but in future if we want switch on other ORM framework so we can switch easily.
+
+10.	What is connection Pool and why we use in software?
+Connection pool is used to create database connection i.e. pooled connection with the help of Direct Connection Pool Manager. Pool Manager stores the connection and when a client request for a connection Pool manager provides the available connection. And if a connection is not available Pool Manager creates a new connection and provide to the client.
+
+It is used minimize the direct connections with database when a new connection request come from the client.
+
+11.	What is Cache and why we use 2nd Level cache?
+Cache is used avoid the database direct call when the same request came from the client.
+2nd level cache is one of the implementation of cache where a common cache used to store all session object present in a Session Factory. 
+It provides read-only, read-write etc features.
+
+12.	Implement a deadlock/program.
+Deadlock is a situation in multithreading where thread1 is waiting for the resource held by the thread2 and thread2 is waiting for the resource held by thread1 and finally none of them are able to release the lock.
+
+public class DeadLockThread {
+
+	public static void main(String[] args) {
+		final String resource1 = "resources1";
+		final String resource2 = "resources2";
+
+		Thread t1 = new thread() {
+			public void run() {
+				synchronized (resource1) {
+					System.out.println("resource1 is locked by thread1");
+					synchronized (resource2) {
+						System.out.println("resource2 is locked by thread1");
+					}
+				}
+			}
+		};
+		Thread t2 = new thread() {
+			public void run() {
+				synchronized (resource2) {
+					System.out.println("resource1 is locked by thread2");
+					synchronized (resource1) {
+						System.out.println("resource2 is locked by thread2");
+					}
+				}
+			}
+		};
+		t1.start();
+		t2.start();
+	}
+}
+
+13.	Find the non-repetitive no in the array/program
+public class NonRepeatingNumber {
+
+	public static void main(String[] args) {
+		int[] arr = { 2, 3, 5, 6, 2, 4, 3, 5 };
+
+		Map<Integer, Integer> hMap = new HashMap<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (!hMap.containsKey(arr[i])) {
+				hMap.put(arr[i], 1);
+			} else {
+				hMap.put(arr[i], hMap.get(arr[i]) + 1);
+			}
+		}
+		for (int i = 0; i < arr.length; i++) {
+			if (hMap.get(arr[i]) == 1) {
+				System.out.println(arr[i]);
+				return;
+			}
+
+		}
+	}
+}
+
+14.	Implement  bubble sort/problem
+               public class BubbleSort {
+
+	public static void main(String[] args) {
+
+		int arr[] = { 8, 5, 9, 1, 4, 3, 10, 6, 2, 7, 12 };
+		System.out.println("Bubble Sort");
+		System.out.println("Before Sorting");
+		System.out.println(Arrays.toString(arr));
+		sort(arr);
+		System.out.println("After Sorting");
+		System.out.println(Arrays.toString(arr));
+
+	}
+
+	public static void sort(int arr[]) {
+		int n = arr.length;
+
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n -i-1; j++) {
+				if (arr[j] > arr[j+1]) {
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			  }
+		   }
+	    }
+      }
+  
+       
+15.	What is Lazy loading ? can you give any real-time example?
+     Lazy loading is a process to create an object of the class whenever required.
+    
+     public class LazyLoading {
+
+	private static LazyLoading lazyLoading = null;
+	public LazyLoading() {
+	}
+
+	public static LazyLoading getObject() {
+		if (lazyLoading == null) {
+			lazyLoading = new LazyLoading();
+		}
+		return lazyLoading;
+	  }
+      }
+      
+16.	What is Criteria and why we use criteria in hibernate?
+Criteria is used only for fetching the data from the database.
+It can fetch the specific data based on some condition(By restricting) from the database.
+It has some predefine methods like min(), max().
+
+17.	What is HQL? and What is the difference between HQL and Criteria?
+HQL can be used to perform select, create, update, delete.
+Criteria is only used for select operation
+In HQL we have to write query by ourselves But In Criteria it provide methods to perform operation.
+
+18.	what is a subquery in JPA?  why do we use?
+Its used for where and having clause which used to find the record based on condition.
+
+19.	Why we use @Transactional?
+It is used to avoid writing manually commit, rollback(After exception) after a transaction.
+
+20.	What is mapping in Hibernate and why not using mapping right now in software?
+Mapping is relation between classes.
+OneToMany
+ManyToOne
+ManyToMany
+
+[I don’t know why its not getting use]
+
+
+21.	Are you using DTO, What is DTO and why we use DTO can you give me a real-time example?
+I have not used it.
+Data Transfer is a Design pattern to reduce the no of call from the database.
+For example an application is exposing the same services for all the users then here we will expose one separate service otherwise it will take multiple request from the different users.
+It can also used for hiding sensitive data.
+For example a Bank can expose the service with name, address, email but cannot expose password and security related data.
+ModelMapper is using to achieve that.
+
+22.	Implement client-server programming using sockets.
+
+Server
+    public class Server {
+	public static void main(String[] args) {
+		try {
+			ServerSocket ss = new ServerSocket(6666);
+			Socket s = ss.accept();
+			DataInputStream ds = new DataInputStream(s.getInputStream());
+			String str = (String) ds.readUTF();
+			System.out.println("message= " + str);
+			ss.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+  
+Client
+public class Client {
+	public static void main(String[] args) {
+		try {
+			Socket s = new Socket("localhost", 6666);
+			DataOutputStream dt = new DataOutputStream(s.getOutputStream());
+			dt.writeUTF("Message from client");
+			dt.flush();
+			dt.close();
+			s.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+
+
+23.	Arrange array in alternative positive and negative nos in the array/program
+
+Solving it
+
+24.	What is the Single Responsibility Principle (SRP) and why do we use?
+
+Single Responsibility principle is used to make a class for single functionality.
+So it will be helpful in modularizing the application.
+
+25.	Difference between Map and Sets
+
+Map methods will take Object as a key value pair but Set will accept only one object.
+     	Set cannot store the duplicate value but Map cannot store duplicate key but it can store duplicate value.
+
+
+
+26.	Program - Implement a program to demonstrate stack overflow
+public class StackOver {
+	public static void main(String[] args) {
+		int n = 2;
+		method1(n);
+	}
+
+	public static void method1(int n) {
+
+		if (n == 1) {
+			return;
+		}
+		method1(n);
+	}
+}
+
+27.	Program - Reverse a string using recursion
+public class ReverseStringUsingRecursion {
+
+	static String revStr = "";
+
+	public static void main(String[] args) {
+		String str = "Rajneesh";
+		System.out.println(str);
+		int n = str.length() - 1;
+		reverseString(str, n);
+		System.out.println(revStr);
+	}
+
+	public static void reverseString(String str, int n) {
+		if (n < 0) {
+			return;
+		}
+		revStr += str.charAt(n);
+		reverseString(str, --n);
+	}
+}
+
+28.	If a database table has more indexes, will it slow down inserts, updates and deletes? Please provide an explanation.
+Yes
+Because in insert operation there is no where clause to scan the record so It has to find the available space to store the data it can take any block of the table to insert the data.
+In Update and Delete have where clause so it can use index for scan but after that it has to update the index.
+
+
+29.	How to specify the max and min limit of a JVM while starting the java process
+Java –Xmx1024m –Xms125m
+       Xmx is for max limit memory to use in application
+Mms is for specify Initial memory
+
+30.	Java 8, Lamdas and Stream functions, write a program to demonstrate the same
+public class NewFeatures{
+	public static void main(String[] args) {
+		
+		List<Integer> list = new ArrayList<Integer>();
+	    list.add(1);
+	    list.add(2);
+	    list.add(3);
+	    list.add(4);
+	    list.add(5);
+	    
+	    list.stream().forEach((i) ->
+	     System.out.print(i + " "));
+	}}
+31.	Design a database which has 1 lac records and the query should return the results in less than a second.
+
+ Not able to solve it, Trying
+                   
+
+
+  
+ 
+
+
+
+
