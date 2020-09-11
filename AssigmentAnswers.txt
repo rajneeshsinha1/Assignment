@@ -1,4 +1,4 @@
-1.	What is the difference between loose coupling and tide coupling? Explain with one example
+﻿1.	What is the difference between loose coupling and tide coupling? Explain with one example
 
 Loose coupling:
 It’s a technique where one class is not dependent on another class or less dependent. That means if we modify one class then it should not affect to other classes.
@@ -84,7 +84,7 @@ Suppose we large number of records present in a table and we need to find a reco
 9.	What is the difference between JPA and Hibernate? and why JPA is coming in the Picture?
 JPA is an interface which is used between java object and relational database.
 Its need some implementation to perform operations with database.
-It has predefined Crud operations. That means after using JPA we can directly 
+It has predefined Crud operations. That means after using JPA we can directly perform the CRUD  operations.
 
 Hibernate is one of the implementation of JPA to perform the database operations
 Its a java Framework which is used to store java object to relational database.
@@ -366,7 +366,7 @@ In Update and Delete have where clause so it can use index for scan but after th
 29.	How to specify the max and min limit of a JVM while starting the java process
 Java –Xmx1024m –Xms125m
        Xmx is for max limit memory to use in application
-Mms is for specify Initial memory
+Xms is for specify Initial memory
 
 30.	Java 8, Lamdas and Stream functions, write a program to demonstrate the same
 public class NewFeatures{
