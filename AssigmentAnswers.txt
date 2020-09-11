@@ -1,8 +1,8 @@
 1.	What is the difference between loose coupling and tide coupling? Explain with one example
 
 Loose coupling:
-It’s a technique where one class is not dependent on another class or less dependent. That means if we modify one class then it should not affect to other classes.
-It’s a better way to make code or classes loosly couple.
+Itâ€™s a technique where one class is not dependent on another class or less dependent. That means if we modify one class then it should not affect to other classes.
+Itâ€™s a better way to make code or classes loosly couple.
 
 Tight coupling
 In tight coupling one class is dependent on another class. That means if we try to modify one class other classes also get affected.
@@ -230,7 +230,7 @@ OneToMany
 ManyToOne
 ManyToMany
 
-[I don’t know why its not getting use]
+[I donâ€™t know why its not getting use]
 
 
 21.	Are you using DTO, What is DTO and why we use DTO can you give me a real-time example?
@@ -278,7 +278,34 @@ public class Client {
 
 23.	Arrange array in alternative positive and negative nos in the array/program
 
-Solving it
+public class RearrangeNegativeAndpositive {
+
+	public static void main(String[] args) {
+
+		int[] arr = { 1, 2, 3, -4, -1, 4 };
+
+		int p = -1;
+		for (int i = 0; i < arr.length; i++) {
+
+			if (arr[i] < 0) {
+				p++;
+				int temp = arr[i];
+				arr[i] = arr[p];
+				arr[p] = temp;
+			}
+		}
+		int neg = 0, pos = p + 1;
+		while (pos < arr.length && neg < pos && arr[neg] < 0) {
+
+			int temp = arr[neg];
+			arr[neg] = arr[pos];
+			arr[pos] = temp;
+			pos++;
+			neg += 2;
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+}
 
 24.	What is the Single Responsibility Principle (SRP) and why do we use?
 
@@ -337,7 +364,7 @@ In Update and Delete have where clause so it can use index for scan but after th
 
 
 29.	How to specify the max and min limit of a JVM while starting the java process
-Java –Xmx1024m –Xms125m
+Java â€“Xmx1024m â€“Xms125m
        Xmx is for max limit memory to use in application
 Mms is for specify Initial memory
 
@@ -356,8 +383,9 @@ public class NewFeatures{
 	     System.out.print(i + " "));
 	}}
 31.	Design a database which has 1 lac records and the query should return the results in less than a second.
+We can partiotion the table in database based on Range or Hash and then we apply the select query in partitioned table so it will take the less time to fetch the data.
 
- Not able to solve it, Trying
+
                    
 
 
